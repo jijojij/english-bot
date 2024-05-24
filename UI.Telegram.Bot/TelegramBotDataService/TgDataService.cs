@@ -20,7 +20,10 @@ public class TgDataService(ITelegramBotClient innerClient) : ITgDataService
         if (update.Message?.Text is not { } messageText)
             return Task.CompletedTask;
 
-        Handler(new WasAction(new MetaData(update.Message.Chat.Id, ActionType.Message), messageText));
+        Handler(new WasAction(new MetaData(update.Message.Chat.Id, ActionType.Message)
+        {
+            UserName = update.Message.From?.Username
+        }, messageText));
         return Task.CompletedTask;
     }
     

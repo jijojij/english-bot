@@ -10,4 +10,10 @@
       <ProjectReference Include="..\English.Core\English.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="database\users.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

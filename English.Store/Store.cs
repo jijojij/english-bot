@@ -3,7 +3,7 @@ using English.Core.Users;
 
 namespace English.Store;
 
-public class Store
+public class Store : IStore
 {
     public async Task<User[]> GetUsers()
     {
