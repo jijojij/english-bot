@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Telegram", "English.Telegram\English.Telegram.csproj", "{9E4DC4CD-6AE7-458F-92F0-9D1E86A14938}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Telegram", "src\English.Telegram\English.Telegram.csproj", "{9E4DC4CD-6AE7-458F-92F0-9D1E86A14938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Core", "English.Core\English.Core.csproj", "{742575B8-9E47-4D8F-B09A-DF7D1ADC6FF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Core", "src\English.Core\English.Core.csproj", "{742575B8-9E47-4D8F-B09A-DF7D1ADC6FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Store", "English.Store\English.Store.csproj", "{0CE92973-E192-42C2-BECC-1D7149AA3800}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Store", "src\English.Store\English.Store.csproj", "{0CE92973-E192-42C2-BECC-1D7149AA3800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Application", "English.Application\English.Application.csproj", "{52B7FF44-FECE-47D2-BA5D-4C77A3D1944E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Application", "src\English.Application\English.Application.csproj", "{52B7FF44-FECE-47D2-BA5D-4C77A3D1944E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
