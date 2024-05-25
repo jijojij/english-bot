@@ -3,7 +3,7 @@ using English.Application.Routes.Models;
 using English.Core.Users;
 using English.Store;
 
-namespace English.Application.Routes.Onboaring;
+namespace English.Application.Routes.Onboarding;
 
 public class Onboarding(IStore store, ICommunicationFactory communicationFactory)
 {

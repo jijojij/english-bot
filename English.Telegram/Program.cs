@@ -1,7 +1,6 @@
-using English.Application;
 using English.Application.Communications;
 using English.Application.Routes;
-using English.Application.Routes.Onboaring;
+using English.Application.Routes.Onboarding;
 using English.Store;
 using English.Store.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,7 @@ using UI.Telegram.Bot.DataService;
 
 namespace UI.Telegram.Bot;
 
-public class Program
+public static class Program
 {
     public static async Task Main()
     {
@@ -41,6 +40,7 @@ public class Program
         services.AddSingleton<Onboarding>();
         services.AddSingleton<Router>();
         services.AddSingleton<TelegramBotReceivingBackground>();
+        
         return services.BuildServiceProvider();
     }
 }

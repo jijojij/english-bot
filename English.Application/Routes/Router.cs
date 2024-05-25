@@ -1,9 +1,9 @@
 using English.Application.Routes.Models;
-using English.Application.Routes.Onboaring;
+using English.Application.Routes.Onboarding;
 
 namespace English.Application.Routes;
 
-public class Router(Onboarding onboarding)
+public class Router(Onboarding.Onboarding onboarding)
 {
     public async Task Route(WasAction wasAction, CancellationToken ct)
     {
