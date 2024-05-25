@@ -12,7 +12,7 @@ public class Router(Onboarding.Onboarding onboarding)
 
         if (wasAction.Data.Contains("/register", StringComparison.InvariantCultureIgnoreCase))
         {
-            var handShakeInfo = new HandShakeInfo(wasAction.MetaData.ChatId, wasAction.MetaData.UserName!);
+            var handShakeInfo = new HandShake(wasAction.MetaData.ChatId, wasAction.MetaData.UserName!);
             await onboarding.HandShake(handShakeInfo, ct);
         }
     }

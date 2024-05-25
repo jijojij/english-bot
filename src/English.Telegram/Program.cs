@@ -2,7 +2,7 @@ using English.Application.Communications;
 using English.Application.Routes;
 using English.Application.Routes.Onboarding;
 using English.Store;
-using English.Store.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using UI.Telegram.Bot.DataService;
@@ -28,14 +28,18 @@ public static class Program
     {
         var services = new ServiceCollection();
 
+        services.AddDbContext<EnglishDbContext>(
+            opt =>
+            {
+                opt.UseMySql("Server=localhost;Database=english;User Id=root;Password=root", new MySqlServerVersion(new Version(8, 2, 0)));
+            });
+
         services.AddSingleton<ITelegramBotClient>(
             _ => new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
         services.AddSingleton<ITelegramDataService, TelegramDataService>();
         services.AddSingleton<ITextMessageCommunication, TelegramTextMessageCommunication>();
 
-        services.AddSingleton<ICommunicationFactory, CommunicationFactory>();
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IStore, Store>();
+        services.AddSingleton<ICommunicationFactory, CommunicationFactory>(); ;
 
         services.AddSingleton<Onboarding>();
         services.AddSingleton<Router>();

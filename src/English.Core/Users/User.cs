@@ -2,11 +2,16 @@
 
 namespace English.Core.Users;
 
-public sealed class User(Guid userId, string name, long chatId)
+public sealed class User(Guid userId, long chatId)
 {
+    public User(Guid userId, long chatId, string? name) : this(userId, chatId)
+    {
+        Name = name;
+    }
+    
     public Guid UserId { get; } = userId;
-    public string Name { get; } = name;
-    private long ChatId { get; } = chatId;
+    public long ChatId { get; } = chatId;
+    public string? Name { get; }
 
     public Task Tell(ICommunication communication, string message, CancellationToken ct)
     {
