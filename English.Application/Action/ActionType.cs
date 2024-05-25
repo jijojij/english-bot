@@ -1,4 +1,4 @@
-namespace English.App.Action;
+namespace English.Application.Action;
 
 public enum ActionType
 {

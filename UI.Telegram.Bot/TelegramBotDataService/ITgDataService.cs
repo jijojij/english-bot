@@ -1,7 +1,7 @@
-using English.App.Action;
+using English.Application.Action;
 using English.Core.Communications;
 
-namespace English.App;
+namespace UI.Telegram.Bot.TelegramBotDataService;
 
 public interface ITgDataService
 {

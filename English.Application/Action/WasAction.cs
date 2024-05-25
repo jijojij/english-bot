@@ -1,4 +1,4 @@
-namespace English.App.Action;
+namespace English.Application.Action;
 
 public class WasAction(MetaData metaData, string data)
 {

@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Core", "English.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Store", "English.Store\English.Store.csproj", "{0CE92973-E192-42C2-BECC-1D7149AA3800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.App", "English.App\English.App.csproj", "{52B7FF44-FECE-47D2-BA5D-4C77A3D1944E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "English.Application", "English.Application\English.Application.csproj", "{52B7FF44-FECE-47D2-BA5D-4C77A3D1944E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

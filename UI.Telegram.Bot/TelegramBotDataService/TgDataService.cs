@@ -1,5 +1,5 @@
-using English.App;
-using English.App.Action;
+using English.Application;
+using English.Application.Action;
 using English.Core.Communications;
 using Telegram.Bot;
 using Telegram.Bot.Polling;

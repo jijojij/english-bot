@@ -2,5 +2,5 @@ namespace English.Core.Communications;
 
 public interface ICommunication
 {
-    Task Tell(CommunicationMethod communicationMethod);
+    Task Tell(CommunicationMethod communicationMethod, CancellationToken ct);
 }

@@ -1,5 +1,5 @@
-using English.App;
-using English.App.CommunicationWay;
+using English.Application;
+using English.Application.CommunicationWay;
 using English.Store;
 using English.Store.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +24,8 @@ public class Program
 
 
         Console.WriteLine("Press any key to exit");
+
+        await @catch.Test("SabinaGrinenko", cts.Token);
         Console.ReadKey();
 
         await cts.CancelAsync();
@@ -36,6 +38,7 @@ public class Program
         services.AddSingleton<ITelegramBotClient>(
             _ => new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
         services.AddSingleton<ITgDataService, TgDataService>();
+        services.AddSingleton<ITextMessageCommunication, TelegramTextMessageCommunication>();
 
         services.AddSingleton<CommunicationWayFactory>();
         services.AddSingleton<IUserRepository, UserRepository>();
