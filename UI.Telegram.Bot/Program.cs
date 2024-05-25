@@ -1,5 +1,4 @@
 using English.App;
-using English.Core.Communications;
 using English.Store;
 using English.Store.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,7 @@ namespace UI.Telegram.Bot;
 
 public class Program
 {
-    public static async Task Main(string[] args)
+    public static async Task Main()
     {
         using CancellationTokenSource cts = new();
 
