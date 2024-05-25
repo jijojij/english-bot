@@ -13,32 +13,30 @@ public class Program
     public static async Task Main(string[] args)
     {
         using CancellationTokenSource cts = new();
-        
+
         var di = BuildDiContainer();
 
         var dataService = di.GetRequiredService<ITgDataService>();
         var @catch = di.GetRequiredService<Catch>();
 
         await dataService.StartReceiving(
-            async action =>
-            {
-                await @catch.CatchMessage(action, cts.Token);
-            }, cts.Token);
-        
-        
+            async action => { await @catch.CatchMessage(action, cts.Token); }, cts.Token);
+
+
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        
+
         await cts.CancelAsync();
     }
 
     private static ServiceProvider BuildDiContainer()
     {
         var services = new ServiceCollection();
-        
-        services.AddSingleton<ITelegramBotClient>(_=> new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
+
+        services.AddSingleton<ITelegramBotClient>(
+            _ => new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
         services.AddSingleton<ITgDataService, TgDataService>();
-        
+
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IStore, Store>();
         services.AddSingleton<Catch>();
