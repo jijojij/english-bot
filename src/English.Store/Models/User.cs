@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using English.Core.Users;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,8 @@ public class User
     public required string TelegramUserName { get; set; }
 
     public required DateTime CreatedAtUtc { get; set; }
+    
+    public UserState State { get; set; } = UserState.Nothing;
 
     public ICollection<LearningPoint> LearningPoints { get; set; } = new List<LearningPoint>();
 }

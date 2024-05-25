@@ -11,8 +11,15 @@ public class Onboarding(ICommunicationFactory communicationFactory, EnglishDbCon
 {
     public async Task HandShake(HandShake handShake, CancellationToken ct)
     {
+        var dbUser = await dbContext.Users.FirstOrDefaultAsync(x => x.TelegramChatId == handShake.ChatId, ct);
+        if (dbUser is not null)
+        {
+            await dbUser.ToDomain().Tell(communicationFactory.CreateCommunication(ActionType.Message), "You are already registered!", ct);
+            return;
+        }
+        
         var user = new User(Guid.NewGuid(), handShake.ChatId);
-        var dbUser = user.CreateNewDb(handShake.UserName);
+        dbUser = user.CreateNewDb(handShake.UserName);
         await dbContext.Users.AddAsync(dbUser, ct);
         await dbContext.SaveChangesAsync(ct);
         
@@ -24,6 +31,7 @@ public class Onboarding(ICommunicationFactory communicationFactory, EnglishDbCon
     {
         var dbUser = await dbContext.Users.FirstAsync(x => x.TelegramChatId == niceToMeetYou.ChatId, ct);
         dbUser.Name = niceToMeetYou.PreferName;
+        dbUser.State = UserState.Nothing;
         await dbContext.SaveChangesAsync(ct);
         
         var user = dbUser.ToDomain();

@@ -13,11 +13,12 @@ public static class Mapper
             TelegramUserName = userName,
             TelegramChatId = domain.ChatId,
             CreatedAtUtc = DateTime.UtcNow,
+            State = domain.State
         };
     }
     
     public static User ToDomain(this Models.User db)
     {
-        return new User(db.Id, db.TelegramChatId, db.Name);
+        return new User(db.Id, db.TelegramChatId, db.Name, db.State);
     }
 }
