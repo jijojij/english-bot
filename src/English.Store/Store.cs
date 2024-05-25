@@ -9,5 +9,5 @@ public class Store(IUserRepository userRepository) : IStore
 
 public interface IStore
 {
-    public IUserRepository UserRepository { get; } 
+    public IUserRepository UserRepository { get; }
 }

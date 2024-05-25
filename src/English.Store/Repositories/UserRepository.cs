@@ -21,10 +21,7 @@ public class UserRepository : IUserRepository
     public async Task Add(User user, CancellationToken ct)
     {
         var users = await GetAll(ct);
-        if (users.Any(u => u.UserId == user.UserId || u.Name == user.Name))
-        {
-            return;
-        }
+        if (users.Any(u => u.UserId == user.UserId || u.Name == user.Name)) return;
 
         users = users.Append(user).ToArray();
 
@@ -38,7 +35,7 @@ public class UserRepository : IUserRepository
     }
 }
 
-public class FileContext
+public static class FileContext
 {
     public static async Task<T[]> GetContext<T>(string path, CancellationToken ct)
     {

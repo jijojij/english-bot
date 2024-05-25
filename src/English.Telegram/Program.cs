@@ -15,11 +15,11 @@ public static class Program
     {
         using CancellationTokenSource cts = new();
         var di = BuildDiContainer();
-        
+
         var tgBot = di.GetRequiredService<TelegramBotReceivingBackground>();
         await tgBot.Start(cts.Token);
-        
-        
+
+
         Console.ReadKey();
         await cts.CancelAsync();
     }
@@ -36,11 +36,11 @@ public static class Program
         services.AddSingleton<ICommunicationFactory, CommunicationFactory>();
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IStore, Store>();
-        
+
         services.AddSingleton<Onboarding>();
         services.AddSingleton<Router>();
         services.AddSingleton<TelegramBotReceivingBackground>();
-        
+
         return services.BuildServiceProvider();
     }
 }

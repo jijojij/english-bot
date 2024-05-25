@@ -8,6 +8,30 @@ namespace UI.Telegram.Bot.DataService;
 
 public class TelegramDataService(ITelegramBotClient innerClient) : ITelegramDataService
 {
+    public Task StartReceiving(TgWasAction handler, CancellationToken ct)
+    {
+        Handler = handler;
+
+        innerClient.StartReceiving(
+            InnerHandler,
+            (_, exception, _) =>
+            {
+                Console.WriteLine(exception.Message);
+                return Task.CompletedTask;
+            },
+            new ReceiverOptions { AllowedUpdates = [] },
+            ct
+        );
+
+        return Task.CompletedTask;
+    }
+
+    public async Task SendMessage(CommunicationMethod communication, CancellationToken ct)
+    {
+        await innerClient.SendTextMessageAsync(
+            communication.ChatId, communication.Message, cancellationToken: ct);
+    }
+
     # region private
 
     private TgWasAction? Handler { get; set; }
@@ -29,28 +53,4 @@ public class TelegramDataService(ITelegramBotClient innerClient) : ITelegramData
     }
 
     #endregion
-
-    public Task StartReceiving(TgWasAction handler, CancellationToken ct)
-    {
-        Handler = handler;
-
-        innerClient.StartReceiving(
-            updateHandler: InnerHandler,
-            pollingErrorHandler: (_, exception, _) =>
-            {
-                Console.WriteLine(exception.Message);
-                return Task.CompletedTask;
-            },
-            receiverOptions: new ReceiverOptions { AllowedUpdates = [] },
-            cancellationToken: ct
-        );
-
-        return Task.CompletedTask;
-    }
-
-    public async Task SendMessage(CommunicationMethod communication, CancellationToken ct)
-    {
-        await innerClient.SendTextMessageAsync(
-            communication.ChatId, communication.Message, cancellationToken: ct);
-    }
 }

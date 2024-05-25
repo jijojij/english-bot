@@ -16,4 +16,3 @@ public class Onboarding(IStore store, ICommunicationFactory communicationFactory
         await user.Tell(communication, "Nice to meet you!", ct);
     }
 }
-

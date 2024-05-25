@@ -9,14 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-      <PackageReference Include="Telegram.Bot" Version="19.0.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
+        <PackageReference Include="Telegram.Bot" Version="19.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\English.Application\English.Application.csproj" />
-      <ProjectReference Include="..\English.Core\English.Core.csproj" />
+        <ProjectReference Include="..\English.Application\English.Application.csproj"/>
+        <ProjectReference Include="..\English.Core\English.Core.csproj"/>
     </ItemGroup>
 
 </Project>

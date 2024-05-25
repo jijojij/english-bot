@@ -7,17 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\English.Core\English.Core.csproj" />
+        <ProjectReference Include="..\English.Core\English.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="database\users.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="database\users.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
     </ItemGroup>
 
 </Project>
