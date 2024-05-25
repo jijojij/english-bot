@@ -16,8 +16,4 @@
       <ProjectReference Include="..\English.Store\English.Store.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\English.Core\English.Core.csproj" />
-    </ItemGroup>
-
 </Project>

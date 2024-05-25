@@ -1,7 +1,7 @@
 namespace English.Core.Communications;
 
-public class CommunicationMethod(long destinationId, string message)
+public class CommunicationMethod(long chatId, string message)
 {
-    public long DestinationId { get; } = destinationId;
+    public long ChatId { get; } = chatId;
     public string Message { get; } = message;
 }

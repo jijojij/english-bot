@@ -1,4 +1,5 @@
 using English.App;
+using English.App.CommunicationWay;
 using English.Store;
 using English.Store.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +37,7 @@ public class Program
             _ => new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
         services.AddSingleton<ITgDataService, TgDataService>();
 
+        services.AddSingleton<CommunicationWayFactory>();
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IStore, Store>();
         services.AddSingleton<Catch>();

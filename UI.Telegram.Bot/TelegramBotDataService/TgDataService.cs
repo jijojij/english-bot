@@ -50,6 +50,6 @@ public class TgDataService(ITelegramBotClient innerClient) : ITgDataService
     public async Task SendMessage(CommunicationMethod communication, CancellationToken ct)
     {
         await innerClient.SendTextMessageAsync(
-            communication.DestinationId, communication.Message, cancellationToken: ct);
+            communication.ChatId, communication.Message, cancellationToken: ct);
     }
 }
