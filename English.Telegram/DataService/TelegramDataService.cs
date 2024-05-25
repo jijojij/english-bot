@@ -1,38 +1,39 @@
-using English.Application;
-using English.Application.Action;
+using English.Application.Routes.Models;
 using English.Core.Communications;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace UI.Telegram.Bot.TelegramBotDataService;
+namespace UI.Telegram.Bot.DataService;
 
-public class TgDataService(ITelegramBotClient innerClient) : ITgDataService
+public class TelegramDataService(ITelegramBotClient innerClient) : ITelegramDataService
 {
     # region private
-    
+
     private TgWasAction? Handler { get; set; }
-    private Task InnerHandler(ITelegramBotClient _, Update update, CancellationToken __)
+
+    private async Task InnerHandler(ITelegramBotClient _, Update update, CancellationToken ct)
     {
         if (Handler is null)
             throw new Exception("Handler is null");
-        
-        if (update.Message?.Text is not { } messageText)
-            return Task.CompletedTask;
 
-        Handler(new WasAction(new MetaData(update.Message.Chat.Id, ActionType.Message)
-        {
-            UserName = update.Message.From?.Username
-        }, messageText));
-        return Task.CompletedTask;
+        if (update.Message?.Text is not { } messageText)
+            return;
+
+        var was = new WasAction(
+            new MetaData(update.Message.Chat.Id, ActionType.Message)
+                { UserName = update.Message.From?.Username },
+            messageText);
+
+        await Handler(was, ct);
     }
-    
+
     #endregion
 
     public Task StartReceiving(TgWasAction handler, CancellationToken ct)
     {
         Handler = handler;
-        
+
         innerClient.StartReceiving(
             updateHandler: InnerHandler,
             pollingErrorHandler: (_, exception, _) =>
@@ -46,7 +47,7 @@ public class TgDataService(ITelegramBotClient innerClient) : ITgDataService
 
         return Task.CompletedTask;
     }
-    
+
     public async Task SendMessage(CommunicationMethod communication, CancellationToken ct)
     {
         await innerClient.SendTextMessageAsync(

@@ -1,9 +1,9 @@
-using English.Application.Action;
+using English.Application.Routes.Models;
 using English.Core.Communications;
 
-namespace UI.Telegram.Bot.TelegramBotDataService;
+namespace UI.Telegram.Bot.DataService;
 
-public interface ITgDataService
+public interface ITelegramDataService
 {
     Task StartReceiving(TgWasAction handler, CancellationToken ct);
     Task SendMessage(CommunicationMethod communication, CancellationToken ct);

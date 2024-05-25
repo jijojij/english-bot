@@ -2,7 +2,7 @@ namespace English.Store;
 
 public interface IGeneralRepository<T>
 {
-    Task<T[]> GetAll();
-    Task<T?> Get(Guid _);
-    Task Add(T _);     
+    Task<T[]> GetAll(CancellationToken ct);
+    Task<T?> Get(Guid _, CancellationToken ct);
+    Task Add(T _, CancellationToken ct);     
 }

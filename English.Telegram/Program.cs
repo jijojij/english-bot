@@ -1,10 +1,12 @@
 using English.Application;
-using English.Application.CommunicationWay;
+using English.Application.Communications;
+using English.Application.Routes;
+using English.Application.Routes.Onboaring;
 using English.Store;
 using English.Store.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
-using UI.Telegram.Bot.TelegramBotDataService;
+using UI.Telegram.Bot.DataService;
 
 namespace UI.Telegram.Bot;
 
@@ -13,21 +15,13 @@ public class Program
     public static async Task Main()
     {
         using CancellationTokenSource cts = new();
-
         var di = BuildDiContainer();
-
-        var dataService = di.GetRequiredService<ITgDataService>();
-        var @catch = di.GetRequiredService<Catch>();
-
-        await dataService.StartReceiving(
-            async action => { await @catch.CatchMessage(action, cts.Token); }, cts.Token);
-
-
-        Console.WriteLine("Press any key to exit");
-
-        await @catch.Test("SabinaGrinenko", cts.Token);
+        
+        var tgBot = di.GetRequiredService<TelegramBotReceivingBackground>();
+        await tgBot.Start(cts.Token);
+        
+        
         Console.ReadKey();
-
         await cts.CancelAsync();
     }
 
@@ -37,13 +31,16 @@ public class Program
 
         services.AddSingleton<ITelegramBotClient>(
             _ => new TelegramBotClient(Environment.GetEnvironmentVariable("TOKEN_TG")!));
-        services.AddSingleton<ITgDataService, TgDataService>();
+        services.AddSingleton<ITelegramDataService, TelegramDataService>();
         services.AddSingleton<ITextMessageCommunication, TelegramTextMessageCommunication>();
 
-        services.AddSingleton<CommunicationWayFactory>();
+        services.AddSingleton<ICommunicationFactory, CommunicationFactory>();
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IStore, Store>();
-        services.AddSingleton<Catch>();
+        
+        services.AddSingleton<Onboarding>();
+        services.AddSingleton<Router>();
+        services.AddSingleton<TelegramBotReceivingBackground>();
         return services.BuildServiceProvider();
     }
 }

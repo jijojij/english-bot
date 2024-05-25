@@ -1,4 +1,4 @@
-namespace English.Application.Action;
+namespace English.Application.Routes.Models;
 
 public class WasAction(MetaData metaData, string data)
 {

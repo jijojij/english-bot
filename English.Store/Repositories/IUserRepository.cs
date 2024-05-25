@@ -4,5 +4,5 @@ namespace English.Store.Repositories;
 
 public interface IUserRepository : IGeneralRepository<User>
 {
-    Task<User?> Get(string name);
+    Task<User?> Get(string name, CancellationToken ct);
 }
